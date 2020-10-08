@@ -1,5 +1,5 @@
-import { detectTextInImage } from '../Adapters/GoogleVisionAPI';
-import { insertIntoDB } from '../Adapters/dbAdapter';
+import { detectTextInImage } from '../adapters/GoogleVisionAPI';
+import { insertIntoDB } from '../adapters/dbAdapter';
 import { createCSV } from './CSVService';
 import { sendImageToOwner } from './MailService';
 import { getGeoLocation } from './LocationService';

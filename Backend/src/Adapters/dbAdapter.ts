@@ -1,24 +1,12 @@
 export {};
 import { Pool } from 'pg';
-import { base64_encode } from '../Adapters/fileSystem';
-import { environment } from './evironment';
-const { promisify } = require('util');
-const exec = promisify(require('child_process').exec);
+import { base64_encode } from './fileSystem';
+import { config } from './evironment';
 
 let pool: any;
 
-async function getLocalDATABASE_URL() {
-  const res =
-    environment === 'production'
-      ? null
-      : await exec('heroku config:get DATABASE_URL -a whispering-castle-08366');
-  return res ? res.stdout : null;
-}
-
-const intialiazeClient = async function () {
-  const localDATABASE_URL = await getLocalDATABASE_URL();
-  const DATABASE_URL =
-    environment === 'production' ? process.env.DATABASE_URL : localDATABASE_URL;
+export const intialiazeDBClient = async function () {
+  const DATABASE_URL = await config.getDBUrl();
   pool = new Pool({
     connectionString: DATABASE_URL,
     ssl: {
@@ -26,8 +14,6 @@ const intialiazeClient = async function () {
     },
   });
 };
-
-intialiazeClient();
 
 export const insertIntoDB = async (
   path: string,

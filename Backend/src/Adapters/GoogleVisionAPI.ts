@@ -1,7 +1,7 @@
 const vision = require('@google-cloud/vision');
 
 const client = new vision.ImageAnnotatorClient({
-  keyFile: './src/Adapters/APIKeys/APIKey.json',
+  keyFile: './src/adapters/APIKeys/APIKey.json',
 });
 
 export const detectTextInImage = async (imageFile: String) => {

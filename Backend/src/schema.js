@@ -1,5 +1,5 @@
 import { Pool } from 'pg';
-import { password, database, port, host } from './Adapters/APIKeys/DBKeys';
+import { password, database, port, host } from './adapters/APIKeys/DBKeys';
 
 // Declare a constant for the schema name
 const schemaName = 'myschema';

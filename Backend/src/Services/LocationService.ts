@@ -1,5 +1,5 @@
 const exifr = require('exifr'); // => exifr/dist/full.umd.cjs
-import { getFullAddress } from '../Adapters/GoogleGeoCoding';
+import { getFullAddress } from '../adapters/GoogleGeoCoding';
 
 const defaultGPSData = {
   latitude: '31.262325',

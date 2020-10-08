@@ -1,5 +1,5 @@
 const createCSVWriter = require('csv-writer').createObjectCsvWriter;
-import { deleteCSVFile } from '../Adapters/fileSystem';
+import { deleteCSVFile } from '../adapters/fileSystem';
 
 const csvWriter = createCSVWriter({
   path: './image.csv',

@@ -1,10 +1,29 @@
 export {};
+const { promisify } = require('util');
+const exec = promisify(require('child_process').exec);
 
-export const environment = process.env.NODE_ENV || 'development';
+const PRODUCTION = 'production';
+const DEVELOPMENT = 'development';
 
-export const port = environment === 'production' ? process.env.PORT : 3200;
+const isProduction = (environment: string) => environment === PRODUCTION;
 
-export const url =
-  environment === 'production'
-    ? 'https://whispering-castle-08366.herokuapp.com/'
-    : `http://localhost:${port}`;
+const environment = process.env.NODE_ENV || DEVELOPMENT;
+
+const port = isProduction(environment) ? process.env.PORT : 3200;
+
+const baseUrl = isProduction(environment)
+  ? 'https://whispering-castle-08366.herokuapp.com/'
+  : `http://localhost:${port}`;
+
+async function getDBUrl() {
+  return isProduction(environment)
+    ? process.env.DATABASE_URL
+    : exec('heroku config:get DATABASE_URL -a whispering-castle-08366');
+}
+
+export const config = {
+  environment,
+  port,
+  baseUrl,
+  getDBUrl,
+};
