@@ -1,12 +1,11 @@
 var nodemailer = require('nodemailer');
-
-const user = 'imageocrdhfinal@gmail.com';
+import { user, password } from '../adapters/APIKeys/mailKeys';
 
 var mail = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user,
-    pass: 'RonAmit1234',
+    pass: password,
   },
 });
 
